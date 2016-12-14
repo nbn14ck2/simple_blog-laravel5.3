@@ -60,6 +60,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Captcha</label>
+                            <div class="col-md-5">
+                                {!! captcha_image_html('ContactCaptcha') !!}
+                                <input class="form-control" type="text" id="CaptchaCode" name="CaptchaCode" style="margin-top:5px; margin-left: 2em;">
+                                @if ($errors->has('CaptchaCode'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
