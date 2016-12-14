@@ -10,4 +10,8 @@ class PagesController extends Controller
     public function index() {
         return redirect()->route('articles');
     }
+
+    public function about() {
+        return view('client.pages.about');
+    }
 }

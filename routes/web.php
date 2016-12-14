@@ -25,6 +25,11 @@ Route::group([
             'as'        => 'home',
             'uses'      => 'PagesController@index'
         ]);
+
+        Route::get('about', [
+            'as'        => 'about',
+            'uses'      => 'PagesController@about'
+        ]);
 });
 
 Route::group([

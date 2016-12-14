@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href=""><label for=""><i class="fa fa-drivers-license-o"></i>About US</label></a></li>
+                    <li><a href="{{ route('about') }}"><label for=""><i class="fa fa-drivers-license-o"></i>About US</label></a></li>
 
                     <!-- Authentication Links -->
                     @if (Auth::guest())
