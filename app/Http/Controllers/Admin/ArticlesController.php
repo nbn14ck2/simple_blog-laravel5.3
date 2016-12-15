@@ -44,7 +44,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $imageName = time().'.'.$request->Imagefile->getClientOriginalExtension();
         $request->Imagefile->move(public_path('resources/upload'), $imageName);

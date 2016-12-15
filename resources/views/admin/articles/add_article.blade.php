@@ -30,7 +30,7 @@
         {{-- Category --}}
         <div id="category" class="form-group">
             <label for="categories">Category:</label>
-            <select name="categories[]" class="form-control select2-multi" multiple="multiple">
+            <select name="categories[]" class="form-control select2-multi" multiple="multiple" required>
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach                           
@@ -38,9 +38,9 @@
         </div>
 
         {{-- Tag --}}
-        <div id="category" class="form-group">
-            <label for="tags">Category:</label>
-            <select name="tags[]" class="form-control select2-multi" multiple="multiple">
+        <div id="tag" class="form-group">
+            <label for="tags">Tag:</label>
+            <select name="tags[]" class="form-control select2-multi" multiple="multiple" required>
                 @foreach($tags as $tag)
                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                 @endforeach                           
@@ -59,11 +59,15 @@
             <input type="file" id="Imagefile" name="Imagefile">
             <p class="help-block">The file under validation must be an image (jpeg, png, bmp, gif, or svg).</p>
         </div>
+        
         <button type="submit" class="btn btn-success pull-right">Add Article</button>
+        
     </form>
 </div>
 
-@endsection @section('script')
+@endsection
+
+@section('script')
     <script src="{{ asset('admin/libs/trumbowyg/dist/trumbowyg.min.js') }}"></script>
     <script src="{{ asset('admin/libs/select2/js/select2.min.js') }}"></script>
     <script type="text/javascript">

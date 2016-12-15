@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Article;
 
 class ArticlesController extends Controller
 {
@@ -16,10 +17,10 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles           = DB::table('articles')->paginate(2);
+        $articles           = DB::table('articles')->orderBy('id', 'DESC')->paginate(2);
         $recent_articles    = DB::table('articles')->orderBy('id', 'DESC')->limit(2)->get();
         $categories         = DB::table('categories')->get();
-        $tags                = DB::table('tags')->get();
+        $tags               = DB::table('tags')->get();
         return view('client.articles.list_articles')->with([
             'articles'          => $articles,
             'recent_articles'   => $recent_articles,
@@ -57,7 +58,8 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article            = DB::table('articles')->where('id', $id)->get();
+        // $article            = DB::table('articles')->where('id', $id)->get();
+        $article            = Article::find($id);
         $recent_articles    = DB::table('articles')->orderBy('id', 'DESC')->limit(2)->get();
         $categories         = DB::table('categories')->get();
         $tags               = DB::table('tags')->get();

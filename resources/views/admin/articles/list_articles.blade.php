@@ -25,7 +25,7 @@
                             <td>{{ $article->title }}</td>
                             <td>{{ $article->description }}</td>
                             <td>
-                                {{-- @foreach($article->categories as $category)
+                                {{-- @foreach ($articles->tags as $tag)
                                 @endforeach --}}
                             </td>
                             <td><label for="" class="label-warning">tag helo</label></td>                            

@@ -56,3 +56,11 @@
                 }
             </style>
         @endif
+
+        @if($errors->first('tag'))
+            <style>
+                #tag {
+                    color: #A94442;
+                }
+            </style>
+        @endif
