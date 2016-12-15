@@ -17,6 +17,7 @@
 |--------------------------------------------------------------------------
 */
 
+// Route Pages.
 Route::group([
         'prefix'        => '/',
         'namespace'     => 'Client'  
@@ -32,6 +33,7 @@ Route::group([
         ]);
 });
 
+// Route Articls.
 Route::group([
         'prefix'        => 'articles',
         'namespace'     => 'Client'    
@@ -49,9 +51,15 @@ Route::group([
                 Route::post('{id}/comment', [
                     'as'    => 'articles.comment',
                     'uses'  => 'ArticlesController@comment'
-            ]);
+                ]);
+
+                Route::post('search', [
+                    'as'    => 'articles.search',
+                    'uses'  => 'ArticlesController@search'
+                ]);
 });
 
+// Route Categories.
 Route::group([
     'prefix'    => 'categories',
     'namespace' => 'Client'
@@ -63,6 +71,20 @@ Route::group([
 
 });
 
+// Route Tags.
+Route::group([
+    'prefix'    => 'tags',
+    'namespace' => 'Client'
+    ], function(){
+        Route::get('{id}', [
+            'as'    => 'tags.show',
+            'uses'  => 'TagsController@show'
+        ]);
+
+});
+
+
+// Route Users.
 Route::group([
     'prefix'        => 'user',
     'namespace'     => 'Client',
@@ -169,6 +191,7 @@ Route::group([
                 'as'    => 'categories.edit',
                 'uses'  => 'CategoriesController@update'
             ]);
+
 
             Route::get('{id}/delete', [
                 'as'    => 'categories.delete',

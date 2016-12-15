@@ -135,6 +135,8 @@ aside {
     position: absolute;
     top: .5em;
     right: .2em;
+    border: none;
+    background-color: transparent
 }
 
 @media all and (max-width: 480px){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Model\Category;
 
 class CategoriesController extends Controller
 {
@@ -15,7 +16,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -47,13 +48,15 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        $articles           = DB::table('articles')->where('category_id', $id)->orderBy('id', 'DESC')->paginate(2);
-        $categories         = DB::table('categories')->get();
         $recent_articles    = DB::table('articles')->orderBy('id', 'DESC')->limit(2)->get();
-        return view('client.articles.list_articles')->with([
-            'articles'          => $articles,
+        $categories         = DB::table('categories')->get();
+        $tags               = DB::table('tags')->get();
+        $category           = Category::find($id);
+        return view('client.categories.show_article')->with([
+            'category'          => $category,
             'recent_articles'   => $recent_articles,
-            'categories'        => $categories
+            'categories'        => $categories,
+            'tags'              => $tags
         ]);
     }
 

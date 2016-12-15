@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Article;
+use App\Http\Requests\Articles\SearchRequest;
 
 class ArticlesController extends Controller
 {
@@ -122,5 +123,19 @@ class ArticlesController extends Controller
             'created_at'    => date('Y-m-d H:i:s')
         ]);
         return redirect()->to('articles/'.$id.'#comments');
+    }
+
+    public function search(SearchRequest $request)
+    {
+        $articles           = DB::table('articles')->where('title', 'LIKE',  '%'.$request->content.'%')->orderBy('id', 'DESC')->paginate(2);
+        $recent_articles    = DB::table('articles')->orderBy('id', 'DESC')->limit(2)->get();
+        $categories         = DB::table('categories')->get();
+        $tags               = DB::table('tags')->get();
+        return view('client.articles.list_articles')->with([
+            'articles'          => $articles,
+            'recent_articles'   => $recent_articles,
+            'categories'        => $categories,
+            'tags'              => $tags
+        ]);
     }
 }

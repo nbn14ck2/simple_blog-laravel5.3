@@ -3,9 +3,11 @@
              <li>
                 <div class="_head"><h4><label for="">SEARCH</label></h4></div>
                 <div class="col-sm-10">
-                    <form class="form_search" action="/">
-                        <input class="form-control" type="text" placeholder="Search here...">
-                        <a class="icon_search" href="#"><i class="fa fa-search"></i></a>
+
+                    <form method="POST" class="form_search" action="{{ route('articles.search') }}">
+                        {{ csrf_field() }}
+                        <input name='content' class="form-control" type="text" placeholder="Search here...">
+                        <button type="submit" class="icon_search" href="#"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="clearfix"></div>
