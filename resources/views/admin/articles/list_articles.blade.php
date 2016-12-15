@@ -25,10 +25,31 @@
                             <td>{{ $article->title }}</td>
                             <td>{{ $article->description }}</td>
                             <td>
-                                {{-- @foreach ($articles->tags as $tag)
-                                @endforeach --}}
+                                <?php
+                                    $categories = DB::table('article_category')->select('category_id')->where('article_id', $article->id)->get();
+                                    for($i = 0; $i < count($categories); $i++){
+                                        $category = DB::table('categories')->select('name')->where('id', $categories[$i]->category_id)->get();
+                                        for($j = 0; $j < count($category); $j++){
+                                           echo '<label style="margin-left: .2em" class="label label-primary">';
+                                           echo $category[$j]->name; 
+                                           echo '</label>';
+                                        }
+                                    }
+                                ?>                         
                             </td>
-                            <td><label for="" class="label-warning">tag helo</label></td>                            
+                            <td>
+                                <?php
+                                    $tags = DB::table('article_tag')->select('tag_id')->where('article_id', $article->id)->get();
+                                    for($i = 0; $i < count($tags); $i++){
+                                        $tag = DB::table('tags')->select('name')->where('id', $tags[$i]->tag_id)->get();
+                                        for($j = 0; $j < count($tag); $j++){
+                                           echo '<label style="margin-left: .2em" class="label label-primary">';
+                                           echo $tag[$j]->name; 
+                                           echo '</label>';
+                                        }
+                                    }
+                                ?>
+                            </td>                            
                             <td class="text-center" id="drop"><a href="#" data-toggle="modal" data-target="#dropModal"><i class="fa fa-times-circle-o fa-2x"></i></a></td>
                             <td class="text-center"><a href="{{ url('admin/articles/'.$article->id.'/edit') }}"><i class="fa fa-pencil-square-o fa-2x"></i></td>
                         </tr>

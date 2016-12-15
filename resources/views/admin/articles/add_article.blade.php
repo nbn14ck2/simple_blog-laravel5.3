@@ -5,7 +5,9 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('admin/libs/trumbowyg/dist/ui/trumbowyg.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/libs/select2/css/select2.min.css') }}">
-@endsection @section('content')
+@endsection
+
+@section('content')
 
 <div class="col-md-8 col-md-offset-2">
     <div class="lead">Add New Article</div>

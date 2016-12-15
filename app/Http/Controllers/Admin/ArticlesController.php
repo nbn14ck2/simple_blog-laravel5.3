@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Model\Article;
 use App\Model\Category;
+use App\Model\Tag;
 
 class ArticlesController extends Controller
 {
@@ -81,7 +82,7 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        $article = DB::table('articles')->where('id', $id)->get();
+        $article = Article::find($id);
         return view('admin.articles.edit_article', compact('article'));
     }
 
